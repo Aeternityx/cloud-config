@@ -1,0 +1,51 @@
+server:
+    port: 8080
+example:
+    property: DEFAULT PROFILE REFRESHED
+
+spring:
+  jpa: 
+    properties:
+      hibernate: 
+        ddl-auto: update
+        show-sql: true
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: orgChangeTopic
+          group: listeningGroup
+      kafka:
+        binder:
+          zkNodes: localhost, kafka
+          brokers: localhost, kafka
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+      health:
+        enabled: true
+        show-details: always
+    health:
+      db:
+        enabled: false
+      diskspace:
+        enabled: true

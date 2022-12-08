@@ -1,0 +1,36 @@
+server:
+    port: 8082
+example:
+    property: DOCKER PROFILE
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVER_URL}/eureka/
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+      health:
+        enabled: true
+        show-details: always
+    health:
+      db:
+        enabled: false
+      diskspace:
+        enabled: true
