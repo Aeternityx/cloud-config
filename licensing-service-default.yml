@@ -49,3 +49,6 @@ management:
         enabled: false
       diskspace:
         enabled: true
+redis:
+    host: localhost
+    port: 6379
