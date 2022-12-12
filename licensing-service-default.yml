@@ -4,6 +4,8 @@ example:
     property: DEFAULT PROFILE REFRESHED
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa: 
     properties:
       hibernate: 
